@@ -113,6 +113,8 @@ function startMicrobreak () {
     title: 'stretchly'
   })
   microbreakWin.loadURL(modalPath)
+  microbreakWin.skipTaskbar = true
+  microbreakWin.focusable = false
   // microbreakWin.webContents.openDevTools()
   microbreakWin.webContents.on('did-finish-load', () => {
     microbreakWin.webContents.send('microbreakIdea', microbreakIdeas.randomElement, settings.get('microbreakStrictMode'))
@@ -143,6 +145,8 @@ function startBreak () {
     title: 'stretchly'
   })
   breakWin.loadURL(modalPath)
+  breakWin.skipTaskbar = true
+  breakWin.focusable = false
   // breakWin.webContents.openDevTools()
   breakWin.webContents.on('did-finish-load', () => {
     breakWin.webContents.send('breakIdea', breakIdeas.randomElement, settings.get('breakStrictMode'))
@@ -157,6 +161,10 @@ function finishMicrobreak (shouldPlaySound = true) {
   if (shouldPlaySound) {
     processWin.webContents.send('playSound', settings.get('audio'))
   }
+  if (process.platform === 'darwin') {
+    // get focus on the last app
+    Menu.sendActionToFirstResponder('hide:')
+  }
   microbreakWin.close()
   microbreakWin = null
   breakPlanner.nextBreak.plan()
@@ -165,6 +173,10 @@ function finishMicrobreak (shouldPlaySound = true) {
 function finishBreak (shouldPlaySound = true) {
   if (shouldPlaySound) {
     processWin.webContents.send('playSound', settings.get('audio'))
+  }
+  if (process.platform === 'darwin') {
+    // get focus on the last app
+    Menu.sendActionToFirstResponder('hide:')
   }
   breakWin.close()
   breakWin = null
