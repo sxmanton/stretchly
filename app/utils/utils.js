@@ -24,9 +24,9 @@ let formatTillBreak = function(milliseconds) {
 }
 
 let formatPauseTimeLeft = function (milliseconds) {
-  let timeString = ""
+  let timeString = ''
   let hours = Math.floor(milliseconds / (1000 * 3600))
-  let remainder = (milliseconds - hours*1000*3600)
+  let remainder = (milliseconds - hours * 1000 * 3600)
   let minutes = Math.round(remainder / 60000)
   if (minutes >= 60) {
     minutes -= 60
@@ -39,7 +39,7 @@ let formatPauseTimeLeft = function (milliseconds) {
     timeString += `${minutes}m`
   }
   if (minutes < 1 && hours < 1) {
-    timeString = "less than 1m"
+    timeString = 'less than 1m'
   }
   return timeString
 }

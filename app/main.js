@@ -442,13 +442,13 @@ function updateToolTip () {
 }
 
 function nextBreakType () {
-  if (breakPlanner.scheduler.func == startMicrobreak) {
+  if (breakPlanner.scheduler.func === startMicrobreak) {
     return 'microbreak'
   }
-  if (breakPlanner.scheduler.func == startBreak) {
+  if (breakPlanner.scheduler.func === startBreak) {
     return 'break'
   }
-  console.log("Error determining break type")
+  console.log('Error determining break type')
   return false
 }
 
