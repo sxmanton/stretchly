@@ -16,15 +16,14 @@ let updateProgress = function (started, duration, progress, progressTime) {
 let formatTillBreak = function(milliseconds) {
   let minutes = Math.round(milliseconds / 60000);
   if (minutes < 1) {
-    let seconds = ((milliseconds % 60000) / 1000).toFixed(0);
+    let seconds = ((milliseconds % 60000) / 1000).toFixed(0)
     return `${seconds}s`
   } else {
     return `${minutes}m`
   }
-  //return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-let formatPauseTimeLeft = function(milliseconds) {
+let formatPauseTimeLeft = function (milliseconds) {
   let timeString = ""
   let hours = Math.floor(milliseconds / (1000 * 3600))
   let remainder = (milliseconds - hours*1000*3600)

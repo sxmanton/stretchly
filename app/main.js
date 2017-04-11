@@ -430,10 +430,9 @@ function updateToolTip () {
     if (timeLeft) {
       toolTipString += `\nPaused - ${Utils.formatPauseTimeLeft(timeLeft)} till breaks resume\nas regularly scheduled`
     } else {
-      toolTipString += "\nPaused indefinitely"
+      toolTipString += '\nPaused indefinitely'
     }
-  }
-  else {
+  } else {
     let breakType = nextBreakType()
     if (breakType) {
       toolTipString += `\n${Utils.formatTillBreak(breakPlanner.scheduler.timeLeft)} to ${breakType}`
@@ -442,12 +441,12 @@ function updateToolTip () {
   appIcon.setToolTip(toolTipString)
 }
 
-function nextBreakType(){
+function nextBreakType () {
   if (breakPlanner.scheduler.func == startMicrobreak) {
-    return "microbreak"
+    return 'microbreak'
   }
   if (breakPlanner.scheduler.func == startBreak) {
-    return "break"
+    return 'break'
   }
   console.log("Error determining break type")
   return false
