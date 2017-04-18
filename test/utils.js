@@ -14,4 +14,12 @@ describe('Utils', function () {
     Utils.formatRemaining(61).should.equal('2 minutes left')
     Utils.formatRemaining(150).should.equal('3 minutes left')
   })
+
+  it('formats time left in pause into correct format', function () {
+    Utils.formatPauseTimeLeft(59999).should.equal('less than 1m')
+    Utils.formatPauseTimeLeft(45*60*1000).should.equal('45m')
+    Utils.formatPauseTimeLeft(61*60*1000).should.equal('1h1m')
+    Utils.formatPauseTimeLeft(60*60*1000).should.equal('1h')
+    Utils.formatPauseTimeLeft(210*60*1000).should.equal('3h30m')
+  })
 })
