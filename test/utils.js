@@ -3,7 +3,7 @@ const Utils = require('../app/utils/utils')
 
 chai.should()
 
-describe('Utils', function () {
+describe.only('Utils', function () {
   beforeEach(function () {
     //
   })
@@ -21,5 +21,12 @@ describe('Utils', function () {
     Utils.formatPauseTimeLeft(61*60*1000).should.equal('1h1m')
     Utils.formatPauseTimeLeft(60*60*1000).should.equal('1h')
     Utils.formatPauseTimeLeft(210*60*1000).should.equal('3h30m')
+  })
+
+  it('formats time left till next break into correct format', function () {
+    Utils.formatTillBreak(15*1000).should.equal('15s')
+    Utils.formatTillBreak(29.4*1000).should.equal('29s')
+    Utils.formatTillBreak(31*1000).should.equal('1m')
+    Utils.formatTillBreak(60*1.5*1000).should.equal('2m')
   })
 })
