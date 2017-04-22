@@ -436,6 +436,11 @@ function updateToolTip () {
     let breakType = nextBreakType()
     if (breakType) {
       toolTipString += `\n${Utils.formatTillBreak(breakPlanner.scheduler.timeLeft)} to ${breakType}`
+      if (breakType == 'microbreak') {
+        let breakInterval = breakPlanner.settings.get('breakInterval')
+        let breakNumber = breakPlanner.breakNumber % breakInterval
+        toolTipString += `\nNext break following ${breakInterval - breakNumber} more microbreak(s)`
+      }
     }
   }
   appIcon.setToolTip(toolTipString)
